@@ -25,6 +25,16 @@ public class ItemsFormController {
 
 
     public void SaveOnAction(javafx.event.ActionEvent actionEvent) {
-
+        try {
+            Object insert_into_customer_ = CrudUtil.execute("INSERT INTO Customer VALUES(?,?,?)",txtItCode.getText(),txtItName.getText(),txtPrice.getText()
+            );
+            if(insert_into_customer_!=null){
+                new Alert(Alert.AlertType.CONFIRMATION,"Customer Saved").show();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
